@@ -1,11 +1,13 @@
 {
-  "name": "weboftalent/contactpage",
+  "name": "weboftalent/contact-page",
   "description": "SilverStripe module to add a contact page with optional map to your site",
   "type": "silverstripe-module",
   "keywords": [
     "silverstripe",
-    "contactpage",
-    "contact page"
+    "contact",
+    "website message",
+    "contact page",
+    "map"
   ],
   "authors": [
     {
