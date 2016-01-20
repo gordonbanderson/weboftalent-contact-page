@@ -1,13 +1,14 @@
 <?php
-class ContactPageMessageAdmin extends ModelAdmin {
-	// Can manage multiple models
-	public static $managed_models = array('ContactPageMessage');
 
-	// Linked as /admin/products/
-	static $url_segment = 'contactpagemessages';
+class ContactPageMessageAdmin extends ModelAdmin
+{
+    // Can manage multiple models
+    public static $managed_models = array('ContactPageMessage');
 
-	static $menu_title = 'ContactPageMessages';
+    // Linked as /admin/products/
+    public static $url_segment = 'contactpagemessages';
 
-	static $menu_icon = '/contactage/icons/menuicon.png';
+    public static $menu_title = 'ContactPageMessages';
 
+    public static $menu_icon = '/contact-page/icons/menuicon.png';
 }
