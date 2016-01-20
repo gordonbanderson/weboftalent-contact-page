@@ -79,7 +79,6 @@ class ContactPage extends Page
 // Controller
 class ContactPage_Controller extends Page_Controller
 {
-    //Define our form function as allowed
     public static $allowed_actions = array(
         'ContactForm',
         'SendContactForm',
@@ -106,7 +105,6 @@ class ContactPage_Controller extends Page_Controller
         }
     }
 
-    //The function which generates our form
     public function ContactForm()
     {
         $name = _t('ContactPage.NAME', 'Name');
@@ -155,7 +153,6 @@ class ContactPage_Controller extends Page_Controller
         return $form;
     }
 
-    //The function that handles our form submission
     public function SendContactForm($data, $form)
     {
         // saving data before sending contact form
@@ -191,7 +188,6 @@ class ContactPage_Controller extends Page_Controller
         }
     }
 
-    //The function to test whether to display the Submit Text or not
     public function Success()
     {
         return isset($_REQUEST['success']) && $_REQUEST['success'] == '1';
