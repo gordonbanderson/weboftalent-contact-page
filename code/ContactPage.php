@@ -25,7 +25,7 @@ class ContactPage extends Page
         if ($this::has_extension('ContactPageMultipleAddress')) {
             return '';
         } else {
-            $map = $this->owner->RenderMap();
+            $map = $this->owner->getRenderableMap();
             $map->setZoom(10);
             $map->setAdditionalCSSClasses('fullWidthMap');
             $map->setShowInlineMapDivStyle(true);
