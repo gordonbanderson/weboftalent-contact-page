@@ -6,13 +6,21 @@ use SilverStripe\Admin\ModelAdmin;
 
 class ContactPageMessageAdmin extends ModelAdmin
 {
-    // Can manage multiple models
+    /**
+     * @var string[]
+     */
     private static $managed_models = [ContactPageMessage::class];
 
-    // Linked as /admin/products/
+    /**
+     * @var string
+     */
     private static $url_segment = 'contactpagemessages';
 
+    /**
+     * @var string
+     */
     private static $menu_title = 'ContactPageMessages';
 
+    /** @var string  */
     private static $menu_icon = '/contact-page/icons/menuicon.png';
 }

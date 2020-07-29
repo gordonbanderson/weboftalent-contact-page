@@ -3,6 +3,8 @@
 namespace WebOfTalent\ContactPage;
 
 use SilverStripe\Core\Extension;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\FormField;
 
 /**
  * Class ContactPageMultipleAddressExtension
@@ -13,7 +15,10 @@ use SilverStripe\Core\Extension;
  */
 class ContactPageMultipleAddressExtension extends Extension
 {
-    public function updateContactPageForm(FieldList &$fields): void
+    /**
+     * @param FieldList<FormField> $fields
+     */
+    public function updateContactPageForm( &$fields): void
     {
         $fields->removeByName('ContactAddress');
         $fields->removeByName('ContactTelephoneNumber');

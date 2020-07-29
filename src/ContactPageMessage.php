@@ -2,12 +2,17 @@
 
 namespace WebOfTalent\ContactPage;
 
+use SilverStripe\Forms\FormField;
 use SilverStripe\ORM\DataObject;
 
 class ContactPageMessage extends DataObject
 {
+    /**
+     * @var string
+     */
     private static $table_name = 'ContactPageMessage';
 
+    /** @var array<string,string> */
     private static $db = [
         'Name' => 'Varchar(255)',
      'Email' => 'Varchar(255)',
@@ -15,7 +20,11 @@ class ContactPageMessage extends DataObject
      'RepliedTo' => 'Boolean',
     ];
 
-    public function getCMSFields(): \SilverStripe\Forms\FieldList
+
+    /**
+     * @return \SilverStripe\Forms\FieldList<FormField>
+     */
+    public function getCMSFields()
     {
         $fields = parent::getCMSFields();
         $fields->renameField('Name', \_t('ContactPageMessage.NAME', 'Name'));
