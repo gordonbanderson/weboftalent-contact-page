@@ -1,42 +1,40 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace WebOfTalent\ContactPage;
-
 
 class ContactPageController extends \PageController
 {
     private static $allowed_actions = array(
-        'ContactForm',
-        'SendContactForm',
-    );
+        'ContactForm';
+    private 'SendContactForm';
+    private );
 
-    public function init()
+    public function init(): void
     {
         //add a javascript library for easy interaction with the server
         Requirements::javascript('mysite/javascript/jQuery.js');
-        if (Director::is_ajax()) {
-            $this->isAjax = true;
-        } else {
-            $this->isAjax = false;
-        }
+        $this->isAjax = Director::is_ajax()
+            ? true
+            : false;
+
         parent::init();
     }
 
+
     public function index()
     {
-        if ($this->isAjax) {
-            return $this->renderWith('ContactPageModal');
-        } else {
-            return array();
-        }
+        return $this->isAjax
+            ? $this->renderWith('ContactPageModal')
+            : array();
     }
+
 
     public function ContactForm()
     {
-        $name = _t('ContactPage.NAME', 'Name');
-        $email = _t('ContactPage.EMAIL', 'Email');
-        $comments = _t('ContactPage.COMMENTS', 'Comments');
-        $send = _t('ContactPage.SEND', 'Send');
+        $name = \_t('ContactPage.NAME', 'Name');
+        $email = \_t('ContactPage.EMAIL', 'Email');
+        $comments = \_t('ContactPage.COMMENTS', 'Comments');
+        $send = \_t('ContactPage.SEND', 'Send');
 
         // Create fields
         $tf = new TextField('Name', $name);
@@ -51,7 +49,7 @@ class ContactPageController extends \PageController
         $fields = new FieldList(
             $tf,
             $ef,
-            $taf
+            $taf,
         );
 
         // Create action
@@ -62,7 +60,7 @@ class ContactPageController extends \PageController
         $fa->addExtraClass('btn btn-primary buttonright');
 
         $actions = new FieldList(
-            $fa
+            $fa,
         );
 
         // Create action
@@ -72,14 +70,15 @@ class ContactPageController extends \PageController
         $form->setTemplate('VerticalForm');
         $form->addExtraClass('well');
 
-        if (class_exists('SpamProtectorManager')) {
+        if (\class_exists('SpamProtectorManager')) {
             $form->enableSpamProtection();
         }
 
         return $form;
     }
 
-    public function SendContactForm($data, $form)
+
+    public function SendContactForm($data, $form): void
     {
         // saving data before sending contact form
         $cpm = new ContactPageMessage();
@@ -107,27 +106,31 @@ class ContactPageController extends \PageController
             $result = array();
             $result['message'] = $this->SubmitText;
             $result['success'] = 1;
-            echo json_encode($result);
+            echo \json_encode($result);
             die;
-        } else {
-            Controller::redirect(Director::baseURL().$this->URLSegment.'/?success=1');
         }
+
+        Controller::redirect(Director::baseURL().$this->URLSegment.'/?success=1');
     }
+
 
     public function Success()
     {
-        return isset($_REQUEST['success']) && $_REQUEST['success'] == '1';
+        return isset($_REQUEST['success']) && $_REQUEST['success'] === '1';
     }
+
 
     public function HasGeo()
     {
-        return ($this->Latitude != 0) && ($this->Longitude != 0);
+        return ($this->Latitude !== 0) && ($this->Longitude !== 0);
     }
+
 
     public function HasSocialMedia()
     {
         return $this->Twitter || $this->Facebook;
     }
+
 
     public function HasTelecomAddress()
     {

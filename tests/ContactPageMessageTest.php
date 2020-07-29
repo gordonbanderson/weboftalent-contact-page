@@ -1,11 +1,13 @@
-<?php
+<?php declare(strict_types = 1);
+
 namespace WebOfTalent\ContactPage\Tests;
+
 use SilverStripe\Dev\SapphireTest;
 use WebOfTalent\ContactPage\ContactPageMessage;
 
 class ContactPageMessageTest extends SapphireTest
 {
-    public function testGetCMSFields()
+    public function testGetCMSFields(): void
     {
         $cpm = new ContactPageMessage();
         $fields = $cpm->getCMSFields();
@@ -13,7 +15,7 @@ class ContactPageMessageTest extends SapphireTest
         $fields = $tab->FieldList();
         $names = array();
         foreach ($fields as $field) {
-            array_push($names, $field->getName());
+            \array_push($names, $field->getName());
         }
         $expected = array(
             'Name', 'Email', 'Comments', 'RepliedTo'

@@ -1,11 +1,12 @@
-<?php
+<?php declare(strict_types = 1);
+
 namespace WebOfTalent\ContactPage;
 
 use SilverStripe\Core\Extension;
 
 class ContactPageMultipleAddressExtension extends Extension
 {
-    public function updateContactPageForm(&$fields)
+    public function updateContactPageForm(&$fields): void
     {
         $fields->removeByName('ContactAddress');
         $fields->removeByName('ContactTelephoneNumber');
