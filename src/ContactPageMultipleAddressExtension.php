@@ -4,9 +4,16 @@ namespace WebOfTalent\ContactPage;
 
 use SilverStripe\Core\Extension;
 
+/**
+ * Class ContactPageMultipleAddressExtension
+ *
+ * @package WebOfTalent\ContactPage
+ *
+ * @phpcs:disable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
+ */
 class ContactPageMultipleAddressExtension extends Extension
 {
-    public function updateContactPageForm(&$fields): void
+    public function updateContactPageForm(FieldList &$fields): void
     {
         $fields->removeByName('ContactAddress');
         $fields->removeByName('ContactTelephoneNumber');
@@ -14,10 +21,8 @@ class ContactPageMultipleAddressExtension extends Extension
         $fields->removeByName('Location');
     }
 
-    /*
-    Helper method for a template
-    */
-    public function HideAddressAndPhoneDetails()
+
+    public function HideAddressAndPhoneDetails(): bool
     {
         return true;
     }

@@ -2,25 +2,31 @@
 
 namespace WebOfTalent\ContactPage;
 
+/**
+ * Class ContactPageController
+ *
+ * @package WebOfTalent\ContactPage
+ *
+ * @phpcs:disable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
+ */
 class ContactPageController extends \PageController
 {
-    private static $allowed_actions = array(
-        'ContactForm';
-    private 'SendContactForm';
-    private );
+    private static $allowed_actions = [
+        'ContactForm',
+     'SendContactForm',
+     ];
 
     public function init(): void
     {
         //add a javascript library for easy interaction with the server
         Requirements::javascript('mysite/javascript/jQuery.js');
-        $this->isAjax = Director::is_ajax()
-            ? true
-            : false;
+        $this->isAjax = Director::is_ajax();
 
         parent::init();
     }
 
 
+    /** @return array|\SilverStripe\ORM\FieldType\DBHTMLText */
     public function index()
     {
         return $this->isAjax
@@ -29,7 +35,10 @@ class ContactPageController extends \PageController
     }
 
 
-    public function ContactForm()
+    /**
+     * Create and return a form for contact purposes
+     */
+    public function ContactForm(): Form
     {
         $name = \_t('ContactPage.NAME', 'Name');
         $email = \_t('ContactPage.EMAIL', 'Email');
@@ -78,7 +87,7 @@ class ContactPageController extends \PageController
     }
 
 
-    public function SendContactForm($data, $form): void
+    public function SendContactForm($data): void
     {
         // saving data before sending contact form
         $cpm = new ContactPageMessage();
@@ -114,25 +123,29 @@ class ContactPageController extends \PageController
     }
 
 
-    public function Success()
+    /** @return bool true if a request flag of 'success' is set to 1 */
+    public function Success(): bool
     {
         return isset($_REQUEST['success']) && $_REQUEST['success'] === '1';
     }
 
 
-    public function HasGeo()
+    /** @return bool true if either the latitude or longitude is non zero */
+    public function HasGeo(): bool
     {
         return ($this->Latitude !== 0) && ($this->Longitude !== 0);
     }
 
 
-    public function HasSocialMedia()
+    /** @return bool true if either Twitter or Facebook is set */
+    public function HasSocialMedia(): bool
     {
         return $this->Twitter || $this->Facebook;
     }
 
 
-    public function HasTelecomAddress()
+    /** @return bool true if there is an email, fax or telephone number */
+    public function HasTelecomAddress(): bool
     {
         return $this->ContactEmailAddress || $this->ContactFaxNumber || $this->ContactTelephoneNumber;
     }

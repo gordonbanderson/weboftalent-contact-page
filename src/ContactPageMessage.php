@@ -8,14 +8,14 @@ class ContactPageMessage extends DataObject
 {
     private static $table_name = 'ContactPageMessage';
 
-    private static $db = array(
-        'Name' => 'Varchar(255)';
-    private 'Email' => 'Varchar(255)';
-    private 'Comments' => 'Text';
-    private 'RepliedTo' => 'Boolean';
-    private );
+    private static $db = [
+        'Name' => 'Varchar(255)',
+     'Email' => 'Varchar(255)',
+     'Comments' => 'Text',
+     'RepliedTo' => 'Boolean',
+    ];
 
-    public function getCMSFields()
+    public function getCMSFields(): \SilverStripe\Forms\FieldList
     {
         $fields = parent::getCMSFields();
         $fields->renameField('Name', \_t('ContactPageMessage.NAME', 'Name'));

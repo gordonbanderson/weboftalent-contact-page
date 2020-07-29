@@ -7,28 +7,38 @@ use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
 use SilverStripe\Forms\TextareaField;
 use SilverStripe\Forms\TextField;
 
+/**
+ * Class ContactPage
+ *
+ * @package WebOfTalent\ContactPage
+ * @phpcs:disable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
+ */
 class ContactPage extends \Page
 {
     private static $table_name = 'ContactPage';
 
-    private static $db = array(
-        'ContactAddress' => 'Text';
-    private 'ContactTelephoneNumber' => 'Varchar(255)';
-    private 'ContactFaxNumber' => 'Varchar(255)';
-    private 'ContactEmailAddress' => 'Varchar(255)';
-    private 'Mailto' => 'Varchar(100)';
-    private 'SubmitText' => 'HTMLText';
-    private 'Twitter' => 'Varchar(255)';
-    private 'Facebook' => 'Varchar(255)';
-    private );
+    private static $db = [
+        'ContactAddress' => 'Text',
+     'ContactTelephoneNumber' => 'Varchar(255)',
+     'ContactFaxNumber' => 'Varchar(255)',
+     'ContactEmailAddress' => 'Varchar(255)',
+     'Mailto' => 'Varchar(100)',
+     'SubmitText' => 'HTMLText',
+     'Twitter' => 'Varchar(255)',
+     'Facebook' => 'Varchar(255)',
+    ];
 
     private static $icon = 'contact-page/icons/phone.png';
 
-    public function SingularMap()
+    /** @return bool true if a map is included */
+    public function SingularMap(): bool
     {
         return !$this::has_extension('ContactPageMultipleAddressExtension');
     }
 
+
+    /**
+     * @todo Use smindel gis package
 
     public function Map()
     {
@@ -44,9 +54,10 @@ class ContactPage extends \Page
 
         return $map;
     }
+     */
 
 
-    public function getCMSFields()
+    public function getCMSFields(): \SilverStripe\Forms\FieldList
     {
         $fields = parent::getCMSFields();
         $addresstabname = 'Root.'.\_t('ContactPage.ADDRESS', 'Address');
@@ -62,7 +73,10 @@ class ContactPage extends \Page
             new HTMLEditorField('SubmitText', \_t('ContactPage.TEXT_SHOWN_AFTER_SUBMISSION', 'Text on Submission')),
         );
 
-        $fields->addFieldToTab($addresstabname, new TextareaField('ContactAddress', \_t('ContactPage.ADDRESS', 'Address')));
+        $fields->addFieldToTab($addresstabname, new TextareaField(
+            'ContactAddress',
+            \_t('ContactPage.ADDRESS', 'Address'),
+        ));
         $fields->addFieldToTab($addresstabname, new TextField(
             'ContactTelephoneNumber',
             \_t('ContactPage.CONTACT_TELEPHONE_NUMBER', 'Contact Tel. Number'),
@@ -91,7 +105,7 @@ class ContactPage extends \Page
     }
 
 
-    public function ShortenedFacebook()
+    public function ShortenedFacebook(): string
     {
         $result = \str_replace('https:', 'http:', $this->Facebook);
         $result = \str_replace('http://facebook.com/', '', $result);
