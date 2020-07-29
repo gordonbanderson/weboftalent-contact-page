@@ -1,4 +1,7 @@
 <?php
+namespace WebOfTalent\ContactPage;
+
+use SilverStripe\Core\Extension;
 
 class ContactPageMultipleAddressExtension extends Extension
 {

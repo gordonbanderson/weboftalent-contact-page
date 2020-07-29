@@ -1,28 +1,36 @@
 {
-  "name": "weboftalent/contact-page",
-  "description": "SilverStripe module to add a contact page with optional map to your site",
-  "type": "silverstripe-module",
-  "keywords": [
-    "silverstripe",
-    "contact",
-    "website message",
-    "contact page",
-    "map"
-  ],
-  "authors": [
-    {
-      "name": "Gordon Anderson",
-      "email": "gordon.b.anderson@gmail.com",
-      "homepage": "https://github.com/gordonbanderson/weboftalent-contact-page",
-      "role": "Developer"
-    }
-  ],
-  "support": {
-    "issues": "https://github.com/gordonbanderson/weboftalent-contact-page/issues"
-  },
-  "require": {
-    "silverstripe/framework": "~3.1",
-    "weboftalent/mappable": "~3.2"
-  },
-  "license": "BSD-3-Clause"
+    "name": "weboftalent/contact-page",
+    "description": "SilverStripe module to add a contact page with optional map to your site",
+    "type": "silverstripe-module",
+    "keywords": [
+        "silverstripe",
+        "contact",
+        "website message",
+        "contact page",
+        "map"
+    ],
+    "authors": [
+        {
+            "name": "Gordon Anderson",
+            "email": "gordon.b.anderson@gmail.com",
+            "homepage": "https://github.com/gordonbanderson/weboftalent-contact-page",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/gordonbanderson/weboftalent-contact-page/issues"
+    },
+    "require": {
+        "php": ">=7.1",
+        "silverstripe/recipe-cms": "4.x-dev",
+        "smindel/silverstripe-gis": "^1"
+    },
+	"require-dev": {
+		"ergebnis\/composer-normalize": "^2.6",
+		"phpunit\/phpunit": "^5.7"
+	},
+
+	"minimum-stability": "dev",
+    "prefer-stable": true,
+    "license": "BSD-3-Clause"
 }

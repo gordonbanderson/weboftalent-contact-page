@@ -1,8 +1,11 @@
 <?php
+namespace WebOfTalent\ContactPage;
+
+use SilverStripe\ORM\DataObject;
 
 class ContactPageMessage extends DataObject
 {
-    public static $db = array(
+    private static $db = array(
         'Name' => 'Varchar(255)',
         'Email' => 'Varchar(255)',
         'Comments' => 'Text',

@@ -1,4 +1,7 @@
 <?php
+namespace WebOfTalent\ContactPage\Tests;
+use SilverStripe\Dev\SapphireTest;
+use WebOfTalent\ContactPage\ContactPageMessage;
 
 class ContactPageMessageTest extends SapphireTest
 {
