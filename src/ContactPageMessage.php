@@ -18,7 +18,7 @@ class ContactPageMessage extends DataObject
     ];
 
 
-    /** @return \SilverStripe\Forms\FieldList<\WebOfTalent\ContactPage\FormField> */
+    /** @return \SilverStripe\Forms\FieldList<\SilverStripe\Forms\FormField> */
     public function getCMSFields(): \SilverStripe\Forms\FieldList
     {
         $fields = parent::getCMSFields();
