@@ -2,18 +2,21 @@
 
 namespace WebOfTalent\ContactPage;
 
+use SilverStripe\Control\Controller;
+
 /**
  * Class ContactPageController
  *
  * @package WebOfTalent\ContactPage
  *
  * @phpcs:disable PSR1.Methods.CamelCapsMethodName.NotCamelCaps
+ * @phpcs:disable SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingTraversableTypeHintSpecification
  */
 class ContactPageController extends \PageController
 {
     private static $allowed_actions = [
         'ContactForm',
-     'SendContactForm',
+        'SendContactForm',
      ];
 
     public function init(): void
@@ -87,7 +90,13 @@ class ContactPageController extends \PageController
     }
 
 
-    public function SendContactForm($data): void
+    /**
+     * Record the contents of the contact form, send an email, then return a suitable response
+     *
+     * @param array<string,string> $data
+     * @throws \SilverStripe\ORM\ValidationException
+     */
+    public function SendContactForm(array $data): void
     {
         // saving data before sending contact form
         $cpm = new ContactPageMessage();
@@ -123,10 +132,15 @@ class ContactPageController extends \PageController
     }
 
 
-    /** @return bool true if a request flag of 'success' is set to 1 */
-    public function Success(): bool
+    /**
+     * @param \SilverStripe\Control\HTTPRequest $request the request object
+     * @return bool true iff success=1 is a URL parameter
+     */
+    public function Success(HTTPRequest $request): bool
     {
-        return isset($_REQUEST['success']) && $_REQUEST['success'] === '1';
+        $success = $request->getVar('success');
+
+        return $success === 1;
     }
 
 
